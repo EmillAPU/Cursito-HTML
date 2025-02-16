@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salud360 | Listado de Alimentos</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-right: 15px;
+        }
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+        .menu a {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        .login {
+            margin-right: 40px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 120px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .food-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            background: #f9f9f9;
+            width: 100%;
+        }
+        .food-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-right: 20px;
+        }
+        .food-info {
+            text-align: left;
+        }
+        .food-info h3 {
+            margin: 0;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <h1 class="logo">Salud360</h1>
+        </div>
+        <div class="menu login">
+            <a href="{% url 'login' %}">Inicia sesión</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Listado de Alimentos</h2>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar alimento...">
+            <select>
+                <option value="">Filtrar por categoría</option>
+                <option value="proteina">Proteína</option>
+                <option value="carbohidratos">Carbohidratos</option>
+                <option value="grasas">Grasas</option>
+                <option value="frutas">Frutas</option>
+                <option value="vegetales">Vegetales</option>
+            </select>
+        </div>
+        <div class="food-grid">
+            <div class="food-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQctT7ej9S2SFwAGZm2StUHuxRp6AlCfTAs4w&s" alt="Plátanos">
+                <div class="food-info">
+                    <h3>Plátano</h3>
+                    <p>Rico en potasio y fibra.</p>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://www.infobae.com/resizer/v2/DFN6EUB2SFC7BPEAQWDCKUJUIA.jpg?auth=899099e90e53f8290003d9c77946b92731be4d6d95f6e8edf3e1cfb06bdbc2bb&smart=true&width=350&height=197&quality=85" alt="Arroz">
+                <div class="food-info">
+                    <h3>Arroz</h3>
+                    <p>Fuente de carbohidratos complejos.</p>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://avinews.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2023/07/EEUU-precio-pollo-de-engorde.png.webp" alt="Pollo">
+                <div class="food-info">
+                    <h3>Pollo</h3>
+                    <p>Alto en proteínas magras.</p>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://todofrescord.com/wp-content/uploads/2024/02/yuca-fresca.jpg" alt="Yuca">
+                <div class="food-info">
+                    <h3>Yuca</h3>
+                    <p>Rica en almidón y energía.</p>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://fruttissimo.com.do/wp-content/uploads/2020/10/aguacate2.jpg" alt="Aguacate">
+                <div class="food-info">
+                    <h3>Aguacate</h3>
+                    <p>Fuente de grasas saludables.</p>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://c.files.bbci.co.uk/7614/production/_105482203__105172250_gettyimages-857294664.jpg" alt="Huevo">
+                <div class="food-info">
+                    <h3>Huevo</h3>
+                    <p>Rico en proteínas y vitaminas.</p>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://todofrescord.com/wp-content/uploads/2019/03/batata.jpg" alt="Batata">
+                <div class="food-info">
+                    <h3>Batata</h3>
+                    <p>Fuente de carbohidratos y fibra.</p>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://todofrescord.com/wp-content/uploads/2019/03/lechuga-600x600.jpg" alt="Lechuga">
+                <div class="food-info">
+                    <h3>Lechuga</h3>
+                    <p>Baja en calorías y rica en agua.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salud360 | Listado de Ejercicios</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-right: 15px;
+        }
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+        .menu a {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        .login {
+            margin-right: 40px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 120px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            background: #f9f9f9;
+            width: 100%;
+        }
+        .exercise-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-right: 20px;
+        }
+        .exercise-info {
+            text-align: left;
+        }
+        .exercise-info h3 {
+            margin: 0;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <h1 class="logo">Salud360</h1>
+        </div>
+        <div class="menu login">
+            <a href="{% url 'login' %}">Inicia sesión</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Listado de Ejercicios</h2>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar ejercicio...">
+            <select>
+                <option value="">Filtrar por grupo muscular y/o tipo de ejercicio</option>
+                <option value="espalda">Espalda</option>
+                <option value="pecho">Pecho</option>
+                <option value="bicep">Bíceps</option>
+                <option value="tricep">Tríceps</option>
+                <option value="hombro">Hombro</option>
+                <option value="pierna">Pierna</option>
+                <option value="cuadricep">Cuádriceps</option>
+                <option value="pantorrilla">Pantorrilla</option>
+                <option value="femorales">Femorales</option>
+                <option value="cardio">Cardio</option>
+            </select>
+        </div>
+        <div class="exercise-grid">
+            <div class="exercise-item">
+                <img src="https://www.fisioterapiaconmueve.com/wp-content/uploads/2019/11/dominada.jpg" alt="Dominadas">
+                <div class="exercise-info">
+                    <h3>Dominadas</h3>
+                    <p>Ejercicio para la espalda y bíceps.</p>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="https://i.blogs.es/5b4d69/bench-press-1/450_1000.webp" alt="Press de Banca">
+                <div class="exercise-info">
+                    <h3>Press de Banca</h3>
+                    <p>Ejercicio para el pecho y tríceps.</p>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="https://i.blogs.es/70fc57/bicep-curls-1/450_1000.webp" alt="Curl de Bíceps">
+                <div class="exercise-info">
+                    <h3>Curl de Bíceps</h3>
+                    <p>Ejercicio para los bíceps.</p>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="https://i.blogs.es/93405c/sentadilla/450_1000.webp" alt="Sentadillas">
+                <div class="exercise-info">
+                    <h3>Sentadillas</h3>
+                    <p>Ejercicio para piernas y glúteos.</p>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="https://i.blogs.es/19909d/pesomuerto1/450_1000.webp" alt="Peso Muerto">
+                <div class="exercise-info">
+                    <h3>Peso Muerto</h3>
+                    <p>Ejercicio para la espalda baja y piernas.</p>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="https://i.blogs.es/c56863/poleaalpecho1/1366_2000.jpg" alt="Jalón al Pecho">
+                <div class="exercise-info">
+                    <h3>Jalón al Pecho</h3>
+                    <p>Ejercicio para la espalda.</p>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="https://i.blogs.es/6485db/pres-hombro/1366_2000.jpg" alt="Press de Hombros">
+                <div class="exercise-info">
+                    <h3>Press de Hombros</h3>
+                    <p>Ejercicio para los hombros.</p>
+                </div>
+            </div>
+            <div class="exercise-item">
+                <img src="https://us.123rf.com/450wm/jemastock/jemastock1912/jemastock191219566/135410392-avatar-hombre-corriendo-en-la-cinta-de-correr-icono-sobre-fondo-blanco-ilustraci%C3%B3n-vectorial.jpg?ver=6" alt="Caminadora">
+                <div class="exercise-info">
+                    <h3>Caminadora</h3>
+                    <p>Ejercicio cardiovascular.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
