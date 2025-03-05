@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salud360 | Mi Página</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 20px;
+        }
+        .progress-section {
+            width: 80%;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .progress-bar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+        }
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            background-color: #4CAF50;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .btn {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        /* 🔥 Estilo para centrar el gráfico */
+        .chart-container {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center; /* Centra el gráfico horizontalmente */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo">Salud360</h1>
+    </div>
+
+    <div class="container">
+        <h2>Mi Progreso</h2>
+        
+        <div class="progress-section">
+            <h3 id="progressTitle">Progreso Diario</h3>
+            <div class="progress-bar-container">
+                <div>
+                    <p>Dieta: <span id="dietaProgressText">80%</span></p>
+                    <div class="progress-bar">
+                        <span id="dietaProgress" style="width: 80%;">80%</span>
+                    </div>
+                </div>
+                <div>
+                    <p>Ejercicio: <span id="ejercicioProgressText">60%</span></p>
+                    <div class="progress-bar">
+                        <span id="ejercicioProgress" style="width: 60%;">60%</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" onclick="toggleProgreso()">Ver Progreso Mensual</button>
+            
+            <!-- Contenedor del gráfico centrado -->
+            <div class="chart-container">
+                <canvas id="progressChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isDaily = true;
+        
+        function toggleProgreso() {
+            let dietaValue, ejercicioValue;
+            if (isDaily) {
+                document.getElementById("progressTitle").innerText = "Progreso Mensual";
+                dietaValue = 75;
+                ejercicioValue = 85;
+                document.querySelector(".btn").innerText = "Ver Progreso Diario";
+            } else {
+                document.getElementById("progressTitle").innerText = "Progreso Diario";
+                dietaValue = 80;
+                ejercicioValue = 60;
+                document.querySelector(".btn").innerText = "Ver Progreso Mensual";
+            }
+
+            document.getElementById("dietaProgressText").innerText = dietaValue + "%";
+            document.getElementById("dietaProgress").style.width = dietaValue + "%";
+            document.getElementById("dietaProgress").innerText = dietaValue + "%";
+            
+            document.getElementById("ejercicioProgressText").innerText = ejercicioValue + "%";
+            document.getElementById("ejercicioProgress").style.width = ejercicioValue + "%";
+            document.getElementById("ejercicioProgress").innerText = ejercicioValue + "%";
+
+            updateChart(dietaValue, ejercicioValue);
+            isDaily = !isDaily;
+        }
+
+        // Inicializar el gráfico
+        let ctx = document.getElementById('progressChart').getContext('2d');
+        let progressChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Dieta', 'Ejercicio'],
+                datasets: [{
+                    label: 'Progreso (%)',
+                    data: [80, 60], // Valores iniciales (Diario)
+                    backgroundColor: ['#4CAF50', '#FFCA28']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, max: 100 }
+                }
+            }
+        });
+
+        function updateChart(dieta, ejercicio) {
+            progressChart.data.datasets[0].data = [dieta, ejercicio];
+            progressChart.update();
+        }
+    </script>
+</body>
+</html>
